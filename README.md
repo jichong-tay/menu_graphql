@@ -1,24 +1,24 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Task 1
 
-Things you may want to cover:
+Step up a Ruby on Rails project
 
-* Ruby version
+## Task 2
 
-* System dependencies
+Create a GraphQL Menu endpoint
 
-* Configuration
+### Step 1: Setup models and associations
 
-* Database creation
+```ruby
+rails generate model Menu identifier:string label:string state:string start_date:date end_date:date
+rails generate model Section identifier:string label:string description:string
+rails generate model MenuSection menu:references section:references display_order:integer
+rails generate model Item type:string identifier:string label:string description:string price:float
+rails generate model SectionItem section:references item:references display_order:integer
+rails generate model ModifierGroup identifier:string label:string selection_required_min:integer selection_required_max:integer
+rails generate model Modifier item:references modifier_group:references display_order:integer default_quantity:integer price_override:float
+rails generate model ItemModifierGroup item:references modifier_group:references
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+###
