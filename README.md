@@ -21,4 +21,55 @@ rails generate model Modifier item:references modifier_group:references display_
 rails generate model ItemModifierGroup item:references modifier_group:references
 ```
 
+### Step 2: Create GraphQL types and queries
+
+```ruby
+rails generate graphql:object Menu
+rails generate graphql:object Section
+rails generate graphql:object MenuSection
+rails generate graphql:object Item
+rails generate graphql:object ModifierGroup
+rails generate graphql:object Modifier
+```
+
+Use the following query to query the menu.
+
+```graphql
+query {
+  menus {
+    identifier
+    label
+    state
+    startDate
+    endDate
+    menuSections {
+      displayOrder
+      section {
+        identifier
+        label
+        description
+        items {
+          id
+          type
+          identifier
+          label
+          description
+          price
+          modifier {
+            displayOrder
+            defaultQuantity
+            priceOverride
+            modifierGroup {
+              label
+              selectionRequiredMin
+              selectionRequiredMax
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
 ###
