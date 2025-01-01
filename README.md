@@ -35,8 +35,10 @@ rails generate graphql:object Modifier
 ```ruby
 rails generate graphql:mutation_create ModifierGroup
 rails generate graphql:mutation_update ModifierGroup
+rails generate graphql:mutation_delete ModifierGroup
 rails generate graphql:mutation_create Modifier
 rails generate graphql:mutation_update Modifier
+rails generate graphql:mutation_delete Modifier
 ```
 
 Use the following query to query the menu.
@@ -73,6 +75,185 @@ query {
             }
           }
         }
+      }
+    }
+  }
+}
+```
+
+1. To Create Modifier Group and Modifier
+
+```graphql
+mutation {
+  modifierGroupCreate(
+    input: {
+      modifierGroupInput: {
+        identifier: "example_identifier"
+        label: "Example Label"
+        selectionRequiredMin: 1
+        selectionRequiredMax: 5
+        modifiers: [
+          {
+            itemId: XX
+            displayOrder: 1
+            defaultQuantity: 1
+            priceOverride: 9.99
+          }
+          {
+            itemId: XX
+            displayOrder: 2
+            defaultQuantity: 2
+            priceOverride: 19.99
+          }
+        ]
+      }
+    }
+  ) {
+    modifierGroup {
+      id
+      identifier
+      label
+      selectionRequiredMin
+      selectionRequiredMax
+      modifiers {
+        id
+        displayOrder
+        defaultQuantity
+        priceOverride
+      }
+    }
+  }
+}
+```
+
+2. To Create Modifier Only
+
+```graphql
+mutation {
+  modifierCreate(
+    input: {
+      modifierInput: {
+        itemId: XX
+        modifierGroupId: XX
+        displayOrder: 2
+        defaultQuantity: 3
+        priceOverride: 15.99
+      }
+    }
+  ) {
+    modifier {
+      id
+      displayOrder
+      defaultQuantity
+      priceOverride
+    }
+  }
+}
+```
+
+3. To Update Modifier Group and Modifier
+
+```graphQL
+mutation {
+  modifierGroupUpdate(
+    input: {
+      modifierGroupInput: {
+        id: XX
+        identifier: "example_identifier Update"
+        label: "Example Label"
+        selectionRequiredMin: 1
+        selectionRequiredMax: 5
+        modifiers: [
+          {
+            id: XX
+            itemId: 23
+            displayOrder: 1
+            defaultQuantity: 2
+            priceOverride: 10.99
+          }
+          {
+            id: XX
+            itemId: 24
+            displayOrder: 2
+            defaultQuantity: 2
+            priceOverride: 29.99
+          }
+        ]
+      }
+    }
+  ) {
+    modifierGroup {
+      id
+      identifier
+      label
+      selectionRequiredMin
+      selectionRequiredMax
+      modifiers {
+        id
+        displayOrder
+        defaultQuantity
+        priceOverride
+      }
+    }
+  }
+}
+```
+
+4. To Update Modifier
+
+```graphql
+mutation {
+  modifierUpdate(
+    input: {
+      modifierInput: {
+        id: XX
+        displayOrder: 2
+        defaultQuantity: 3
+        priceOverride: 15.99
+      }
+    }
+  ) {
+    modifier {
+      id
+      displayOrder
+      defaultQuantity
+      priceOverride
+    }
+  }
+}
+```
+
+5. To Delete Modifier
+
+```graphql
+mutation {
+  modifierDelete(input: { id: XX }) {
+    modifier {
+      id
+      displayOrder
+      defaultQuantity
+      priceOverride
+    }
+  }
+}
+```
+
+6. To Delete Modifier Group and Modifier
+
+```graphql
+mutation {
+  modifierGroupDelete(input: { id: XX }) {
+    modifierGroup {
+      id
+      identifier
+      label
+      selectionRequiredMin
+      selectionRequiredMax
+      modifiers {
+        id
+        displayOrder
+        defaultQuantity
+        priceOverride
       }
     }
   }
