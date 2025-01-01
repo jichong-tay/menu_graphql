@@ -41,7 +41,7 @@ rails generate graphql:mutation_update Modifier
 rails generate graphql:mutation_delete Modifier
 ```
 
-Use the following query to query the menu.
+Menu Query: Use the following query to query the menu.
 
 ```graphql
 query {
@@ -98,13 +98,13 @@ mutation {
         selectionRequiredMax: 5
         modifiers: [
           {
-            itemId: XX
+            itemId: 1
             displayOrder: 1
             defaultQuantity: 1
             priceOverride: 9.99
           }
           {
-            itemId: XX
+            itemId: 2
             displayOrder: 2
             defaultQuantity: 2
             priceOverride: 19.99
@@ -137,8 +137,8 @@ mutation {
   modifierCreate(
     input: {
       modifierInput: {
-        itemId: XX
-        modifierGroupId: XX
+        itemId: 1
+        modifierGroupId: 5
         displayOrder: 2
         defaultQuantity: 3
         priceOverride: 15.99
@@ -162,25 +162,25 @@ mutation {
   modifierGroupUpdate(
     input: {
       modifierGroupInput: {
-        id: XX
+        id: 5
         identifier: "example_identifier Update"
-        label: "Example Label"
+        label: "Example Label Update"
         selectionRequiredMin: 1
         selectionRequiredMax: 5
         modifiers: [
           {
-            id: XX
-            itemId: 23
+            id: 14
+            itemId: 2
             displayOrder: 1
             defaultQuantity: 2
-            priceOverride: 10.99
+            priceOverride: 10.00
           }
           {
-            id: XX
-            itemId: 24
+            id: 15
+            itemId: 1
             displayOrder: 2
             defaultQuantity: 2
-            priceOverride: 29.99
+            priceOverride: 20.00
           }
         ]
       }
@@ -210,10 +210,10 @@ mutation {
   modifierUpdate(
     input: {
       modifierInput: {
-        id: XX
-        displayOrder: 2
+        id: 13
+        displayOrder: 3
         defaultQuantity: 3
-        priceOverride: 15.99
+        priceOverride: 0.99
       }
     }
   ) {
@@ -231,7 +231,7 @@ mutation {
 
 ```graphql
 mutation {
-  modifierDelete(input: { id: XX }) {
+  modifierDelete(input: { id: 5 }) {
     modifier {
       id
       displayOrder
@@ -246,7 +246,7 @@ mutation {
 
 ```graphql
 mutation {
-  modifierGroupDelete(input: { id: XX }) {
+  modifierGroupDelete(input: { id: 5 }) {
     modifierGroup {
       id
       identifier
