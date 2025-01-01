@@ -64,14 +64,18 @@ query {
           label
           description
           price
-          modifier {
-            displayOrder
-            defaultQuantity
-            priceOverride
-            modifierGroup {
-              label
-              selectionRequiredMin
-              selectionRequiredMax
+          modifierGroups {
+            label
+            selectionRequiredMin
+            selectionRequiredMax
+            modifiers {
+              item {
+                label
+                description
+              }
+              displayOrder
+              defaultQuantity
+              priceOverride
             }
           }
         }

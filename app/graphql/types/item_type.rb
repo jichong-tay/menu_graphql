@@ -8,6 +8,6 @@ module Types
     field :label, String
     field :description, String
     field :price, Float
-    field :modifier, ModifierType, null: true
+    field :modifier_groups, [ ModifierGroupType ]
   end
 end

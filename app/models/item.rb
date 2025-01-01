@@ -3,7 +3,8 @@ class Item < ApplicationRecord
   has_one :section_item, dependent: :destroy
   has_one :section, through: :section_item
   has_one :modifier, dependent: :destroy
-  has_one :modifier_group, through: :modifier
+  has_many :item_modifier_groups
+  has_many :modifier_groups, through: :item_modifier_groups
 
   # Validation for type
   validates :type, inclusion: { in: [ "Product", "Component" ], message: "%{value} is not a valid type" }
