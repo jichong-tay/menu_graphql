@@ -2,7 +2,7 @@
 
 module Types
   class ModifierGroupType < Types::BaseObject
-    field :id, ID, null: false
+    field :id, ID
     field :identifier, String
     field :label, String
     field :selection_required_min, Integer

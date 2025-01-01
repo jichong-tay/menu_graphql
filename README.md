@@ -32,6 +32,11 @@ rails generate graphql:object ModifierGroup
 rails generate graphql:object Modifier
 ```
 
+```ruby
+rails generate graphql:mutation_create ModifierGroup
+rails generate graphql:mutation_create Modifier
+```
+
 Use the following query to query the menu.
 
 ```graphql
