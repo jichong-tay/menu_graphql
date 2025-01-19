@@ -60,3 +60,4 @@ gem "dotenv", groups: [ :development, :test ]
 
 gem "graphql"
 gem "graphiql-rails"
+gem "rack-cors"
