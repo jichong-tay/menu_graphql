@@ -13,9 +13,9 @@ Menu.destroy_all
 sample_menu = Menu.create!(identifier: 'sample_menu', label: 'Sample Menu', state: 'active', start_date: Date.today)
 
 # Sections for Sample Menu
-non_configurable_section = Section.create!(identifier: 'non_configurable_items', label: 'Non-Configurable Items', description: 'Items that cannot be customized', available: "Y")
-configurable_section = Section.create!(identifier: 'configurable_items', label: 'Configurable Items', description: 'Items that can be customized with various options', available: "Y")
-unavailable_section = Section.create!(identifier: 'unavailable_sections', label: 'Unavailable Sections', description: 'Items that are currently unavailable', available: "N")
+non_configurable_section = Section.create!(identifier: 'daily_best_sellers', label: 'Daily Best Sellers', description: 'Your Daily Best, Delivered Fresh!', available: "Y")
+configurable_section = Section.create!(identifier: 'trending_treasures', label: 'Trending Treasures', description: "Today's Trends, Tomorrow's Favorites!", available: "Y")
+unavailable_section = Section.create!(identifier: 'unavailable_sections', label: 'Exclusive Steals', description: 'Exclusive Finds for Special Days Only!', available: "N")
 
 MenuSection.create!(menu: sample_menu, section: non_configurable_section, display_order: 1)
 MenuSection.create!(menu: sample_menu, section: configurable_section, display_order: 2)
