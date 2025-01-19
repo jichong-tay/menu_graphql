@@ -106,7 +106,8 @@ Rails.application.configure do
   # Enable CORS for your frontend origin in production
   config.middleware.insert_before 0, Rack::Cors do
     allow do
-      origins ENV.fetch("FRONTEND_URL", "https://menu-graphql-app-production.onrender.com/")
+      # origins ENV.fetch("FRONTEND_URL", "https://menu-graphql-app-production.onrender.com/")
+      origins "*"
       resource "*",
                headers: :any,
                methods: [ :get, :post, :put, :patch, :delete, :options, :head ],
