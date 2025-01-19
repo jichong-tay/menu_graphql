@@ -13,21 +13,29 @@ Menu.destroy_all
 sample_menu = Menu.create!(identifier: 'sample_menu', label: 'Sample Menu', state: 'active', start_date: Date.today)
 
 # Sections for Sample Menu
-non_configurable_section = Section.create!(identifier: 'non_configurable_items', label: 'Non-Configurable Items', description: 'Items that cannot be customized')
-configurable_section = Section.create!(identifier: 'configurable_items', label: 'Configurable Items', description: 'Items that can be customized with various options')
+non_configurable_section = Section.create!(identifier: 'non_configurable_items', label: 'Non-Configurable Items', description: 'Items that cannot be customized', available: "Y")
+configurable_section = Section.create!(identifier: 'configurable_items', label: 'Configurable Items', description: 'Items that can be customized with various options', available: "Y")
+unavailable_section = Section.create!(identifier: 'unavailable_sections', label: 'Unavailable Sections', description: 'Items that are currently unavailable', available: "N")
 
 MenuSection.create!(menu: sample_menu, section: non_configurable_section, display_order: 1)
 MenuSection.create!(menu: sample_menu, section: configurable_section, display_order: 2)
+MenuSection.create!(menu: sample_menu, section: unavailable_section, display_order: 3)
 
 # Non-Configurable Items
-non_configurable_item1 = Item.create!(type: 'Product', identifier: 'simple_burger', label: 'Simple Burger', description: 'A classic burger with no customization', price: 5.0)
-non_configurable_item2 = Item.create!(type: 'Product', identifier: 'simple_fries', label: 'Simple Fries', description: 'Crispy golden fries with no customization', price: 2.0)
-non_configurable_section.items << [ non_configurable_item1, non_configurable_item2 ]
+non_configurable_item1 = Item.create!(type: 'Product', identifier: 'simple_burger', label: 'Simple Burger', description: 'A classic burger with no customization', price: 5.0, available: "Y")
+non_configurable_item2 = Item.create!(type: 'Product', identifier: 'simple_fries', label: 'Simple Fries', description: 'Crispy golden fries with no customization', price: 2.0, available: "N")
+non_configurable_item3 = Item.create!(type: 'Product', identifier: 'simple_pasta', label: 'Simple Pasta', description: 'A classic pasta with no customization', price: 3.0, available: "Y")
+non_configurable_section.items << [ non_configurable_item1, non_configurable_item2, non_configurable_item3 ]
 
 # Configurable Items
-configurable_item1 = Item.create!(type: 'Product', identifier: 'custom_burger', label: 'Custom Burger', description: 'A burger you can customize with various options', price: 6.0)
-configurable_item2 = Item.create!(type: 'Product', identifier: 'custom_pasta', label: 'Custom Pasta', description: 'A pasta dish you can customize with various options', price: 7.0)
+configurable_item1 = Item.create!(type: 'Product', identifier: 'custom_burger', label: 'Custom Burger', description: 'A burger you can customize with various options', price: 6.0, available: "Y")
+configurable_item2 = Item.create!(type: 'Product', identifier: 'custom_pasta', label: 'Custom Pasta', description: 'A pasta dish you can customize with various options', price: 7.0, available: "Y")
 configurable_section.items << [ configurable_item1, configurable_item2 ]
+
+# Unavailable Items
+unavailable_item1 = Item.create!(type: 'Product', identifier: 'complex_burger', label: 'Complex Burger', description: 'A burger you can customize with various options', price: 6.0, available: "Y")
+unavailable_item2 = Item.create!(type: 'Product', identifier: 'complex_pasta', label: 'Complex Pasta', description: 'A pasta dish you can customize with various options', price: 7.0, available: "Y")
+unavailable_section.items << [ unavailable_item1, unavailable_item2 ]
 
 # Modifier Groups for Configurable Items
 burger_size_group = ModifierGroup.create!(identifier: 'burger_size', label: 'Burger Size', selection_required_min: 1, selection_required_max: 1)

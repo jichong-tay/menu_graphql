@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_29_070846) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_19_083212) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,7 +31,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_29_070846) do
     t.float "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.check_constraint "type::text = ANY (ARRAY['Product'::character varying, 'Component'::character varying]::text[])", name: "type_check"
+    t.string "available", limit: 1, default: "Y", null: false
+    t.check_constraint "type::text = ANY (ARRAY['Product'::character varying::text, 'Component'::character varying::text])", name: "type_check"
   end
 
   create_table "menu_sections", force: :cascade do |t|
@@ -91,6 +92,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_29_070846) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "available", limit: 1, default: "Y", null: false
   end
 
   add_foreign_key "item_modifier_groups", "items"
